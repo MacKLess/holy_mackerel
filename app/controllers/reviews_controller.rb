@@ -1,6 +1,11 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    if params[:product_id]
+      @product = Product.find(params[:id])
+      @reviews = @product.reviews
+    else
+      @reviews = Review.all
+    end
   end
 
   def show
@@ -45,6 +50,6 @@ class ReviewsController < ApplicationController
 
 private
   def review_params
-    params.require(:review).permit(:content, :product_id, :rating)
-  end 
+    params.require(:review).permit(:content, :product_id)
+  end
 end

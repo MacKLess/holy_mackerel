@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
   belongs_to :product
 
-  validates :product, :rating, :content, :presence => true
+  validates :product, :content, :presence => true
 end

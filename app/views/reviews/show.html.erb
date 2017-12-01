@@ -1,8 +1,8 @@
+<h5><%= link_to "Return to Product", product_path(@review.product) %></h5>
+
 <h1>Review of <%= @review.product.name %></h1>
 
 <h3>By <%= @review.author %></h3>
-
-<h5>Rating: <%= @review.rating %> of 5 Fish</h5>
 
 <p><%= @review.content %></p>
 
@@ -13,4 +13,4 @@
       confirm: "This will remove all content for this review. Are you sure?",
       method: "delete"
       } %>
-</p> 
+</p>
