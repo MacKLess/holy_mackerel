@@ -14,7 +14,7 @@ product = [
   ['Catfish', 55.98, 'Best Choices', 'No Po Boy would be complete without it.'],
   ['Lionfish', 29.99, 'Best Choices', 'Requires a specific palate but very good for the liver.'],
   ['Sablefish (CA farmed)', 75.96, 'Best Choices', 'Exotic flavor that perfects any chowder.'],
-  ['Salmon (AK & NZ)', 49.99, 'Best Choices', 'A traditional favorite that MAKES the holidays bright.],
+  ['Salmon (AK & NZ)', 49.99, 'Best Choices', 'A traditional favorite that MAKES the holidays bright.'],
   ['Sardines: Pacific (CA & US)', 9.99, 'Best Choices', 'Small and packed with flavor.'],
   ['Sole (US)', 11.99, 'Best Choices', 'Great for the heart.'],
   ['Tuna: Albacore (troll, pole, and line)', 39.99, 'Best Choices', 'You know you want it!'],
@@ -33,6 +33,10 @@ product = [
   ['Salmon: Chinook (Puget Sound)', 39.99, 'Avoid', 'Special occassion fish fit to feed any Finn'],
   ['Salmon: Coho (Columbia River)', 33.99, 'Avoid', 'Local delicacy offered only rarely due to eco impact.'],
   ['Tuna: Skipjack (imported purse seine)', 22.99, 'Avoid', 'Delightful flavor and great texture.'],
-  ['Pollock (CA trawl)', 18.99, 'Avoid', 'Perfect for serving with a nice white sauce and a chianti'],
-
+  ['Pollock (CA trawl)', 18.99, 'Avoid', 'Perfect for serving with a nice white sauce and a chianti']
 ]
+productnames = []
+product.each do |product_name, product_cost, product_guide, product_notes|
+  productnames.push(product_name)
+  Product.create(name: product_name, cost: product_cost, guide: product_guide, notes: product_notes)
+end

@@ -1,9 +1,13 @@
 <h1>Mackerel & More!</h1>
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= product.name, product_path(product) %></li>
-  <% end %>
-</ul>
+<% if @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li><%= link_to product.name, product_path(product) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>We're all out of fish!</h3>
+<% end %>
 
-<%= link_to "New Fish", new_list_path %>
+<%= link_to "New Fish", new_product_path %>
