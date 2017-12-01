@@ -1,0 +1,9 @@
+<h1>Mackerel & More!</h1>
+
+<ul>
+  <% @products.each do |product| %>
+    <li><%= product.name, product_path(product) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Fish", new_list_path %>
