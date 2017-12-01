@@ -1,0 +1,27 @@
+<%= render 'layouts/errors', :object => @reviews %>
+
+<% if @product %>
+  <%= form_for [@product, @review] do |f| %>
+    <div class="form-group">
+      <%= f.label :rating, class: "control-label" %>
+      <%= f.number_field :rating, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, class: "control-label" %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <%= f.submit, class: "btn" %>
+  <% end %>
+<% else %>
+  <%= form_for @review do |f| %>
+    <div class="form-group">
+      <%= f.label :rating, class: "control-label" %>
+      <%= f.number_field :rating, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, class: "control-label" %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <%= f.submit, class: "btn" %>
+    <% end %>
+  <% end %>

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root :to => 'products#index'
 
   resources :products do
-    resources :reviews
+    resources :reviews, shallow: true
   end
 
-  resources :reviews
+  resources :reviews, only: [:index]
 end
