@@ -1,5 +1,19 @@
 <h1><%= @product.name %></h1>
 
+<!-- <% if @product.reviews.any? %>
+  <h4>Reviews for this product:</h4>
+
+  <ul>
+    <% @product.reviews.each do |review| %>
+      <li>
+        <%= review.content %>
+      </li>
+    <% end %>
+  </ul> -->
+
+<h4><%= link_to "Reviews of this Product", product_reviews_path(@product) %></h4>
+
+<hr>
 
 <p><%= link_to "Edit", edit_product_path(@product) %></p>
 <p><%= link_to "Delete", product_path(@product),
