@@ -10,16 +10,6 @@
 
 <h3>Price $<%= @product.cost %> per lb</h3>
 
-<!-- <% if @product.reviews.any? %>
-  <h4>Reviews for this product:</h4>
-
-  <ul>
-    <% @product.reviews.each do |review| %>
-      <li>
-        <%= review.content %>
-      </li>
-    <% end %>
-  </ul> -->
 
 <h4><%= link_to "Reviews of this Product", product_reviews_path(@product) %></h4>
 

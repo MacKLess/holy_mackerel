@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   def index
     if params[:product_id]
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:product_id])
       @reviews = @product.reviews
     else
       @reviews = Review.all
@@ -26,6 +26,7 @@ class ReviewsController < ApplicationController
     else
       render :new
     end
+  end
 
   def edit
     @review = Review.find(params[:id])
@@ -40,11 +41,12 @@ class ReviewsController < ApplicationController
     else
       render :edit
     end
+  end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    flash [:notice] = "No fishes, only wishes!"
+    flash[:notice] = "No fishes, only wishes!"
     redirect_to products_path
   end
 
