@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_admin!, except: [:index, :show]
 
   def index
     @products = Product.alphabetical
@@ -10,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+      @product = Product.new
   end
 
   def create
@@ -19,13 +20,13 @@ class ProductsController < ApplicationController
       flash[:notice] = "A new fish is on the list!"
       redirect_to products_path
     else
+      flash[:alert] = @product.errors.full_messages
       render :new
     end
   end
 
   def edit
     @product = Product.find(params[:id])
-    render :edit
   end
 
   def update
@@ -34,6 +35,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Fish updated!"
       redirect_to products_path(@product)
     else
+      flash[:alert] = @products.errors.full_messages
       render :edit
     end
   end

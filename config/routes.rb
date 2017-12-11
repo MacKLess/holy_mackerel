@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :reviews, shallow: true
   end
 
-  resources :reviews, only: [:index]
+  resources :reviews
 
 
   #User routing

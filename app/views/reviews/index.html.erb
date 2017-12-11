@@ -1,17 +1,13 @@
-<% if @product %>
-  <h1>Reviews of <%= @product.name %></h1>
+<h1>Reviews of <%= @product.name %></h1>
 
-  <p><%= link_to "Write a Review for this fish", new_product_review_path(@product) %></p>
-<% else %>
-  <h1>Reviews</h1>
-<% end %>
-
-<% if @reviews.any? %>
+<% if @product.reviews.any? %>
   <ul>
-    <% @reviews.each do |review| %>
-       <li><%= link_to "#{review.product.name} by #{review.author}", review_path(review) %></li>
+    <% @product.reviews.each do |review| %>
+       <li><%= render "#{review.product.name}", new_product_review_path(review) %></li>
     <% end %>
   </ul>
 <% else %>
   <h3>There aren't any reviews for this fish. Be the first to leave a review!</h3>
 <% end %>
+
+<p><%= link_to "Write a Review for this fish", new_product_review_path(@product) %></p>

@@ -6,7 +6,7 @@
       <%= f.label :content, class: "control-label" %>
       <%= f.text_area :content, class: "form-control" %>
     </div>
-    <%= f.submit, class: "btn" %>
+    <%= f.submit "Save", class: "btn" %>
   <% end %>
 <% else %>
   <%= form_for @review do |f| %>
@@ -14,6 +14,6 @@
       <%= f.label :content, class: "control-label" %>
       <%= f.text_area :content, class: "form-control" %>
     </div>
-    <%= f.submit, class: "btn" %>
-    <% end %>
+    <%= f.submit "Save", class: "btn" %>
   <% end %>
+<% end %>

@@ -25,6 +25,22 @@ _This is a site for a seafood company_ Holy Mackerel. _It allows users to create
 
 ## Specifications
 
+TODO
+
+* Need landing page with information about company
+* X All users can view products and their detail pages
+  * X name
+  * X cost
+  * X guide
+  * X notes
+  * X reviews
+  * image
+* Authenticated users
+  * Can leave Reviews
+* Administrators
+  * CRUD products
+  * Delete user reviews
+
 * Users can view products.
 * Users can add, view, edit, and remove their own product reviews.
 * Users can only view other users' reviews.

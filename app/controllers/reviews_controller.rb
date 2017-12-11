@@ -1,17 +1,8 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index]
+  skip_before_action :authenticate_user!, :only => [:index, :show]
 
   def index
-    if params[:product_id]
-      @product = Product.find(params[:product_id])
-      @reviews = @product.reviews
-    else
-      @reviews = Review.all
-    end
-  end
-
-  def show
-    @review = Review.find(params[:id])
+    @product = Product.find(params[:product_id])
   end
 
   def new
@@ -19,7 +10,7 @@ class ReviewsController < ApplicationController
     if current_user
       @review = @product.reviews.new
     else
-      flash[:alert] = "You must be logged in to leave a review."
+      flash[:alert] = "You have to be logged in to leave a review."
       redirect_to product_path(@product)
     end
   end
@@ -28,11 +19,13 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     if current_user
       @review = @product.reviews.new(review_params)
+      @review.user_id = current_user.id
       if @review.save
         flash[:notice] = "Review has been created!"
-        redirect_to review_path(@review)
+        redirect_to product_path(@product)
       else
-        render :new
+      flash[:alert] = @review.errors.full_messages
+      render :new
       end
     else
       flash[:alert] = "You must be logged in to leave a review."
@@ -40,44 +33,20 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-    @review = Review.find(params[:id])
-    if current_user != @review.user
-      flash[:alert] = "This isn't your review! Find yourself another fish."
-      redirect_to review_path(@review)
-    end
-  end
-
-  def update
-    @review = Review.find(params(:id))
-    if current_user != @review.user
-      flash[:alert] = "We're thrilled that you'd like to provide feedback on our fish, but you can only change your own review."
-      redirect_to review_path(@review)
-    else
-      @product = @review.product
-      if @review.update(review_params)
-        flash[:notice] = "This review has been updated!"
-        redirect_to review_path(@review)
-      else
-        render :edit
-      end
-    end
-  end
-
   def destroy
-    @review = Review.find(params[:id])
-    if current_user != @review.user
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.find(params[:id])
+    if current_user != current_user.admin?
       flash[:alert] = "Sorry. You're not on the right boat to change this review."
-      redirect_to review_path(@review)
     else
       @review.destroy
       flash[:notice] = "You threw this review back. Time to re-bait your hook!"
-      redirect_to products_path
     end
+    redirect_to review_path(@review)
   end
 
 private
   def review_params
-    params.require(:review).permit(:content, :product_id)
+    params.require(:review).permit(:content)
   end
 end
