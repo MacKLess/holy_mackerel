@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -11,7 +15,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      flash[:alert] = "There seems to be an error in signing up."
+      flash[:alert] = "There seems to be an error in signing up. Please try again."
       redirect_to '/signup'
     end
   end
@@ -21,4 +25,3 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
   end
-  

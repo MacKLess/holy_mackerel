@@ -40,5 +40,3 @@ product.each do |product_name, product_cost, product_guide, product_notes|
   productnames.push(product_name)
   Product.create(name: product_name, cost: product_cost, guide: product_guide, notes: product_notes)
 end
-
-end

@@ -41,6 +41,7 @@ _Please contact [ldmackrell@gmail.com](mailto:ldmackrell@gmail.com) with questio
 * Ruby
 * Rails
 * Bootstrap
+* Devise
 
 ### License
 
