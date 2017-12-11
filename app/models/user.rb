@@ -8,6 +8,6 @@ class User < ApplicationRecord
 
   attr_accessor :password
   validates_confirmation_of :password
-  validates :email, presence: true, uniqueness: true
+  validates :email, :name, presence: true, uniqueness: true
 
 end
