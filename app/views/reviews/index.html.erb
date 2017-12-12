@@ -3,7 +3,7 @@
 <% if @product.reviews.any? %>
   <ul>
     <% @product.reviews.each do |review| %>
-       <li><%= render "#{review.product.name}", new_product_review_path(review) %></li>
+       <li><%= review.content %></li>
     <% end %>
   </ul>
 <% else %>
